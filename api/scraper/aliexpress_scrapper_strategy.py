@@ -1,7 +1,15 @@
 from selenium import webdriver
+import os
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from api.scraper.scraper_strategy import ScraperStrategy
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 
 class AliexpressScraperStrategy(ScraperStrategy):
@@ -35,8 +43,8 @@ class AliexpressScraperStrategy(ScraperStrategy):
             raise ValueError(f"Invalid item: Please digit a valid item")
         else:
             url = self.get_url(item)
-            option = Options()
-            option.headless = True
-            driver = webdriver.Chrome(ChromeDriverManager().install(), options=option)
+            # option = Options()
+            # option.headless = True
+            #driver = webdriver.Chrome(ChromeDriverManager().install(), options=option)
             driver.get(url)
             return driver.page_source
