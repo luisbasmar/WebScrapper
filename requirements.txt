@@ -44,3 +44,4 @@ websockets==10.3
 whitenoise==6.2.0
 wsproto==1.2.0
 zipp==3.8.1
+chromedriver-binary-auto==0.2.0
