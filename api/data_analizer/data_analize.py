@@ -41,7 +41,6 @@ class DataCollector():
             if search:
                 self.__pages_products = db_manager.find_products(search)
             else:
-                print('+++++++*********++++**++*+MUERTEEEEEEEE')
                 db_manager.delete_search(product_name)
                 self.__scrap_html_contents(product_name)
                 self.__parse_data()
@@ -64,7 +63,7 @@ class DataCollector():
             if x == 'all':
                 return self.__sorted_products
             elif x > len(products) and x > 0: #Need to be upgraded
-                print(self.pages[idx] + " store have " + str(len(products)) + " products to offer")
+                #print(self.pages[idx] + " store have " + str(len(products)) + " products to offer")
                 for idx in range(x):
                     top_page_products.append(products[idx])
             else:
